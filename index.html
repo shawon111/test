@@ -7,45 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"> 
+    <link rel="stylesheet" href="https://unpkg.com/augmented-ui@2.0.0/augmented-ui.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/addon/scroll/simplescrollbars.min.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="/css/popup.css">
     <title>Non Fungible Poker</title>
 </head>
 
 <body>
-    <main>
-        <!-- <div class="h-screen sidebar-container">
-            <div class="p-1">
-             <div class="bg-[#FFEEA9] sidebar h-screen p-2">
-               <div class="flex justify-between">
-     
-                  <i class="menu__option left_arrow_menu_icon cursor-pointer menu_icon text-2xl  las la-angle-right"></i>
-     
-                  <div class="right__menu__option cursor-pointer flex gap-10 items-center  rignt_arrow_icon"> 
-                    <div class="text-lg nft_text">NFP</div> 
-                    <i class="text-2xl  las la-angle-left"></i>
-                  </div>
-               </div>
-     
-               menu list
-               <div>
-                  <ul>
-                    <li class="mt-4 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">About</div></li>
-                    <li class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Rarity</div></li>
-                    <li class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Roadmap</div></li>
-                    <li class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Faq</div></li>
-                  </ul>
-               </div>
+    
+    <code  id="menu-popup" class="code-container popup hide-popup" content="// Jane 💜">
+        <div class="glow-container">
+          <div class="augs" data-augmented-ui></div>
+        </div>
+        <section class="augs bg" data-augmented-ui>
+          <button class="dots" onclick="changeMode()" title="change mode"></button>
+          <input value="propjockey.io">
+          <div class="code highcontrast-dark popup-content">
+            
           </div>
-            </div>
-           </div> --> 
-           
+        </section>
+      </code>
+    <main>
         <section class="hero-container">
             <div class="particle-container">
                 <canvas id="canvas"></canvas>
             </div>
             <div class="main-contents">
-                <div class="bg-[#FFEEA9] sidebar h-screen p-2">
+                <div onmouseover="openSidebar()" onmouseout="closeSidebar()" class="bg-[#FFEEA9] sidebar h-screen p-2">
                     <div class="flex justify-between">
           
                        <i class="menu__option left_arrow_menu_icon cursor-pointer menu_icon text-2xl  las la-angle-right"></i>
@@ -57,12 +48,12 @@
                     </div>
           
                     <!-- menu list -->
-                    <div onmouseover="openSidebar()" onmouseout="closeSidebar()">
+                    <div>
                        <ul>
-                         <li class="mt-4 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">About</div></li>
-                         <li class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Rarity</div></li>
-                         <li class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Roadmap</div></li>
-                         <li class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Faq</div></li>
+                         <li onclick="popupControllAbout()" class="mt-4 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">About</div></li>
+                         <li onclick="popupControllRarity()" class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Rarity</div></li>
+                         <li onclick="popupControllRoadmap()" class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Roadmap</div></li>
+                         <li onclick="popupControllFaq()" class="mt-2 cursor-pointer flex gap-3 items-center "> <i class="text-red-500 text-2xl las la-heart"></i> <div class="menu__name">Faq</div></li>
                        </ul>
                     </div>
                </div>
@@ -82,7 +73,11 @@
     </main>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/js/particlebg.js"></script>
-    <!-- <script src="/js/popup.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/mode/css/css.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/addon/scroll/simplescrollbars.min.js"></script>
+    <script src="/js/popup.js"></script>
     <script src="/js/app.js"></script>
     <script>
 
@@ -124,6 +119,67 @@
             leftarrowmenuicon.classList.toggle("hide_arrow_icon");
           rigntarrowicon.classList.toggle("active_menu_icon");
          }
+
+        //  popup functions
+        const popup = document.getElementById('menu-popup');
+        const popupContents = document.querySelector('.popup-content')
+        console.log("popup_element", popupContents)
+        const showPopup = (contents) => {
+            popup.classList.add('show-popup');
+            popup.classList.remove('hide-popup');
+            const elements = contents;
+            popupContents.textContent = elements
+
+        }
+
+        const popupControllAbout = () => {
+            const texts = `About - NFTs
+
+Nonfungible Poker is a unique NFT poker collection series which will have a special utility in
+our upcoming poker dApp, the first ever in the cosmos ecosystem.
+NFP cards are different from traditional playing cards where the Spades ♠️, Hearts ❤️,
+Diamonds 🔸 & Clubs♣️ are replaced by your favourite cryptos with attractive characters.
+First time in crypto NFT space we are excited to introduce an unique rarity concept based on
+rankings of top 5 poker hands (Royal Flush, Straight Flush, Four of a Kind, Full house,
+Flush)
+We are super stoked to launch the Interchain Poker Club to honour the revolutionary IBC
+technology of the cosmos ecosystem and marvellous community behind it. The “Interchain
+Poker Club” will be followed by the “Revolution Series” and each of these will have 9516
+poker hand NFTs collection + 52 individual card NFTs collection
+
+About - NFP dApp & Tokens
+
+Our poker dApp will be built on Secret network and governed by NFP token holders. Entire
+revenue generated from the poker dApp will be distributed to NFT stakers.
+Unlike other poker platforms, crypto cards will be used here instead of traditional playing
+cards.
+Privacy preserving smart contract and randomness properties of sha256, makes our poker
+dApp very efficient and reliable over other centralised poker platforms built using
+RNG/TFRNG algorithms.
+Based on survey reports, the online poker industry was valued at 10 billion USD which is
+anticipated to be doubled over upcoming years and on the other hand it's disappointing to
+comprehend that such a huge industry is facing serious problems like bots, hacks, identity
+thefts, security of funds and legal restrictions. Nonfungible Poker will solve these problems in
+the most decentralised way by empowering blockchain technology.
+NFP will be the governance token of our poker dApp, which will be used for decision making
+in DAO. Total revenue generated by our dApp will be used to market buy NFP tokens and
+distribute among users who have staked their tokens and NFTs. Stakers will also have
+additional benefits like using poker rooms on discounted rates.
+`
+            showPopup(texts)
+        }
+        const popupControllRarity = () => {
+            const texts = `<h1>rarity popup</h1>`
+            showPopup(texts)
+        }
+        const popupControllRoadmap = () => {
+            const texts = `<h1>roadmap popup</h1>`
+            showPopup(texts)
+        }
+        const popupControllFaq = () => {
+            const texts = `<h1>faq popup</h1>`
+            showPopup(texts)
+        }
 
       </script>
 </body>
