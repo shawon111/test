@@ -8,6 +8,9 @@
     height: 100vh;
     background: url(/resource/images/BG.webp);
     position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 .particle-container{
     height: 100%;
@@ -56,4 +59,15 @@
     text-decoration: none;
     font-size: 1.2rem;
     color: #2F76DC;
+}
+
+@media only screen and (max-width: 1280px) {
+    .logo img {
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .logo img {
+        width: 80%;
+    }
 }
