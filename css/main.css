@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.hero-container{
+
+.hero-container {
     width: 100vw;
     overflow: hidden;
     height: 100vh;
@@ -12,39 +13,43 @@
     background-position: center;
     background-size: cover;
 }
-.particle-container{
+
+.particle-container {
     height: 100%;
     width: 100%;
     position: absolute;
     left: 0;
     top: 0;
 }
+
 #canvas {
     opacity: .7;
     height: 100%;
     width: 100%;
 }
 
-.main-contents{
+.main-contents {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.logo{
+.logo {
     text-align: center;
 }
 
 .logo img {
     width: 60%;
-    margin-top: 3rem;
+    padding-top: 3rem;
+    margin: auto;
 }
 
-.btnOne, .btnTwo {
+.btnOne,
+.btnTwo {
     text-align: center;
 }
 
-.btnOne a{
+.btnOne a {
     display: inline-block;
     padding: 9px 30px;
     background-color: #FFEEA9;
@@ -53,7 +58,8 @@
     color: #2F76DC;
     font-size: 1.2rem;
 }
-.btnTwo a{
+
+.btnTwo a {
     display: inline-block;
     margin-top: 15px;
     text-decoration: none;
@@ -61,11 +67,52 @@
     color: #2F76DC;
 }
 
+main {
+    position: relative;
+}
+
+.sidebar {
+    width: 40px;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.active__sidebar {
+    width: 160px;
+    transition-duration: 0.4s;
+}
+
+.menu__name,
+.nft_text {
+    color: blue;
+    font-weight: 600;
+}
+
+.rignt_arrow_icon {
+    opacity: 0;
+    transition-duration: 0.3s;
+}
+
+.active_menu_icon {
+    opacity: 1;
+    transition-duration: 0.4s;
+}
+
+.hide_arrow_icon {
+    opacity: 0;
+    transition-duration: 0.2s;
+}
+
+
 @media only screen and (max-width: 1280px) {
     .logo img {
         width: 80%;
     }
 }
+
 @media only screen and (max-width: 768px) {
     .logo img {
         width: 80%;
